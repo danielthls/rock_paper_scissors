@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://kit.fontawesome.com/62cc45c888.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,16 +11,39 @@
 <body>
     <div class="header">HEADER</div>
     <div class="main-container">
-        <div class="rps-select">
-            <div class="left-side"></div>
-            <div class="right-side"></div>
+        <div class="player-title">PLAYER</div>
+        <div class="player-buttons">
+            <div class="player-rock button" id="rock"><img src="./images/rockIcon.png" alt="Rock Icon" width="99" height="99">Rock</div>
+            <div class="player-scissors button" id="scissors"><img src="./images/scissorsIcon.png" alt="Scissors Icon" width="99" height="99">Scissors</div>
+            <div class="player-paper button" id="paper"><img src="./images/paperIcon.png" alt="Rock Icon" width="99" height="99">Paper</div>
+            <div class="player-nuke button" id="nuke">ROCK BUTTON HERE</div>
         </div>
-        <div class="game-buttons"></div>
-        <div class="results">
-            <div class="single-result"></div>
-            <div class="overall-result"></div>
+        <div class="computer-title">COMPUTER</div>
+        <div class="computer-buttons">
+            <div class="computer-rock button1" id="rock"><img src="./images/rockIcon.png" alt="Rock Icon" width="100" height="100">Rock</div>
+            <div class="computer-scissors button1" id="scissors"><img src="./images/scissorsIcon.png" alt="Rock Icon" width="99" height="99">Scissors</div>
+            <div class="computer-paper button1" id="paper"><img src="./images/paperIcon.png" alt="Rock Icon" width="99" height="99">Paper</div>
         </div>
     </div>
+    <div class="results-container">
+        <div class="round-result"><span class="player-text"></span><span class="computer-text"></span></div>
+        <div class="score-board"> SCOREBOARD
+            <ul>
+                <li>Wins: <span class="wins"></span></li>
+                <li>Losses: <span class="losses"></span></li>
+                <li>Draws: <span class="draws"></span></li>
+            </ul>
+        </div>
+        <div class="result-announcement"></div>
+    </div>
+    <div class="about-container">
+        <div class="about-game"></div>
+        <div class="about-rock"></div>
+        <div class="about-scissors"></div>
+        <div class="about-paper"></div>
+        <div class="about-nuke"></div>
+    </div>
+    <div class="number-of-games">TESTTESTTEST</div>
     <script defer src="./scripts/script.js"></script>
 </body>
 </html>
