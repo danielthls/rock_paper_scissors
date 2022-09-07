@@ -18,6 +18,9 @@ div {
     gap: 45px;
 }
 
+.button {
+    cursor: pointer;
+}
 
 .player-rock, .player-scissors, .player-paper, .player-nuke, .computer-rock, .computer-scissors, .computer-paper {
     max-width: 100px;
