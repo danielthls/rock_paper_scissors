@@ -13,9 +13,9 @@
     <div class="main-container">
         <div class="player-title">PLAYER</div>
         <div class="player-buttons">
-            <div class="player-rock button" id="rock"><img src="./images/rockIcon.png" alt="Rock Icon" width="99" height="99">Rock</div>
-            <div class="player-scissors button" id="scissors"><img src="./images/scissorsIcon.png" alt="Scissors Icon" width="99" height="99">Scissors</div>
-            <div class="player-paper button" id="paper"><img src="./images/paperIcon.png" alt="Rock Icon" width="99" height="99">Paper</div>
+            <div class="player-rock button" id="rock"><img src="./images/rockIcon.png" alt="Rock Icon" width="99" height="99"><span class="disable-text">Rock</span></div>
+            <div class="player-scissors button" id="scissors"><img src="./images/scissorsIcon.png" alt="Scissors Icon" width="99" height="99"><span class="disable-text">Scissors</span></div>
+            <div class="player-paper button" id="paper"><img src="./images/paperIcon.png" alt="Rock Icon" width="99" height="99"><span class="disable-text">Paper</span></div>
             <div class="player-nuke button" id="nuke">ROCK BUTTON HERE</div>
         </div>
         <div class="computer-title">COMPUTER</div>
@@ -26,12 +26,12 @@
         </div>
     </div>
     <div class="results-container">
-        <div class="round-result"><span class="player-text"></span><span class="computer-text"></span></div>
+        <div class="round-result"></div>
         <div class="score-board"> SCOREBOARD
             <ul>
-                <li>Wins: <span class="wins"></span></li>
-                <li>Losses: <span class="losses"></span></li>
-                <li>Draws: <span class="draws"></span></li>
+                <li>Wins: <span class="wins">0</span></li>
+                <li>Losses: <span class="losses">0</span></li>
+                <li>Draws: <span class="draws">0</span></li>
             </ul>
         </div>
         <div class="result-announcement"></div>
@@ -43,7 +43,7 @@
         <div class="about-paper"></div>
         <div class="about-nuke"></div>
     </div>
-    <div class="number-of-games">TESTTESTTEST</div>
+    <div class="number-of-games">0</div>
     <script defer src="./scripts/script.js"></script>
 </body>
 </html>
