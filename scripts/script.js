@@ -56,7 +56,7 @@ function gameResult(playerChoice, computerChoice) {
     let resultCounter = '';
     let winner = '';
     let loser = '';
-    let roundResult = document.querySelector('.round-result');
+    
 
     if (playerChoice === 'rock') {
         result = 'You selected Rock!'
@@ -113,25 +113,25 @@ function gameResult(playerChoice, computerChoice) {
             resultCounter = 'draw'
         }
     }
-    //let green = document.querySelector('.' + CSS.escape(winner) + '-buttons')
-
-    //let red = document.querySelector('.' + CSS.escape(loser) + '-buttons')
 
     drawBoard(winner, loser);
 
     roundResult.textContent = result;
 
     return resultCounter;
-    //console.log(result);
 }
 
-function clearBoard(divButton) {
+function clearBoard() {
     removeColorButton('.button')
     removeColorButton('.button1')
-    const playerClear = document.querySelector('.player-buttons');
-    const computerClear =document.querySelector('.computer-buttons');
     playerClear.style.background = 'none';
     computerClear.style.background = 'none';
+    wins.textContent = '0';
+    losses.textContent = '0';
+    draws.textContent = '0';
+    roundResult.textContent = "";
+    winDisplay.textContent = "";
+    return;
 }
 
 function drawBoard(green,red) {
@@ -150,29 +150,29 @@ function game() {
     clearBoard();
 }
 
-function result(wins, losses) {
+function finalResult(wins, losses) {
     
+    if (wins >= 5) {
+        winDisplay.textContent = "Player wins!!"
+        newGame.textContent = '1';
+    } else if (losses >= 5) {
+        winDisplay.textContent = "The Computer wins!!"
+        newGame.textContent = '1';
+    }
 }
 
 function currentScore(divButton) {
-    let numberOfGames = document.querySelector('.number-of-games');
-    let wins = document.querySelector('.wins');
-    let losses = document.querySelector('.losses');
-    let draws = document.querySelector('.draws');
-
-    let numberOfGamesInt = parseInt(numberOfGames.textContent);
+    
+    //check if a game already has 5 wins and reset it if it does
+    if (newGame.textContent === '1') {
+        clearBoard();
+        newGame.textContent = 0
+        return;
+    }
+    
     let winsInt = parseInt(wins.textContent);
     let lossesInt = parseInt(losses.textContent);
     let drawsInt = parseInt(draws.textContent);
-
-    console.log(numberOfGamesInt);
-
-    if (numberOfGamesInt >= 5) {
-        return;
-    } else {
-        numberOfGamesInt ++;
-        numberOfGames.textContent = numberOfGamesInt;
-    }
 
     result = gameResult(playerSelect(divButton),getComputerChoice());
 
@@ -188,10 +188,20 @@ function currentScore(divButton) {
         draws.textContent = drawsInt;
     }
 
+    finalResult(winsInt,lossesInt);
 }
 
-const divSelect = document.querySelectorAll('.button');
+let roundResult = document.querySelector('.round-result');//round announcement text
+let wins = document.querySelector('.wins'); //Player wins counter
+let losses = document.querySelector('.losses'); //Computer wins counter
+let draws = document.querySelector('.draws'); //Draws counter
+const divSelect = document.querySelectorAll('.button'); //select the button class for the 3 player buttons
+let newGame = document.querySelector('.new-game'); //div to check if either the player or the computer have won 5 matches
+const playerClear = document.querySelector('.player-buttons');
+const computerClear =document.querySelector('.computer-buttons');
+const winDisplay = document.querySelector('.result-announcement');
 
+//select among the class .button class the ID of the selected button
 divSelect.forEach(function(divButton) {
     divButton.addEventListener("click", function() {
         currentScore(divButton.id);
