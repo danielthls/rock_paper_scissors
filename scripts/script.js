@@ -10,28 +10,41 @@ function getComputerChoice() {
         computerChoice = 'paper'
     }
 
+    //add blue background to the computer button
     backgroundColor('.button1','blue',computerChoice);
     
     return computerChoice
 }
 
+//choice refers to the specific button inside the cssClass querySelectorAll
 function backgroundColor(cssClass,color,choice) {
     
+    //reset colors before applying it to the correct button
     removeColorButton(cssClass);
 
+    //if choice is undefined, select the class with querySelector instead of selectorAll
+    if (typeof choice === 'undefined') {
+        const divCssSingle = document.querySelector(cssClass)
+        divCssSingle.style.background = color;
+        return;
+    }
+
+    //select all the buttons with the class
     const divSelect = document.querySelectorAll(cssClass);
 
+    //filter the specific button and alter the color
     for (i=0; i<divSelect.length; i++) {
         
-        let divButton = divSelect[i];
+        let divClass = divSelect[i];
         
-        if (divButton.id === choice) {
-            divButton.style.background = color;
+        if (divClass.id === choice) {
+            divClass.style.background = color;
         }
     }
     return;
 }
 
+//remove background colors
 function removeColorButton(cssClass) {
     const playerSelect1 = document.querySelectorAll(cssClass);
     for (i=0; i<playerSelect1.length; i++) {
@@ -60,61 +73,68 @@ function gameResult(playerChoice, computerChoice) {
 
     if (playerChoice === 'rock') {
         result = 'You selected Rock!'
+        console.log('test1')
         if (computerChoice === 'rock') {
-           winner = 'player';
-           loser = 'player';
+           winner = '.player-buttons';
+           loser = '.player-buttons';
            result += " The computer picked Rock! It's a draw!"
            resultCounter = 'draw';
         } else if (computerChoice === 'scissors') {
-            winner = 'player';
-            loser = 'computer';
+            winner = '.player-buttons';
+            loser = '.computer-buttons';
             result += ' The computer picked Scissors! You win!'
             resultCounter = 'win';
         } else if (computerChoice === 'paper') {
-           winner = 'computer';
-           loser = 'player';
+           winner = '.computer-buttons';
+           loser = '.player-buttons';
            resultCounter = 'lose';
            result += ' The computer picked Paper! You lose!'
         }
     } else if (playerChoice === 'scissors') {
         result = 'You selected Scissors!'
         if (computerChoice === 'rock') {
-            winner = 'computer';
-            loser = 'player';
+            winner = '.computer-buttons';
+            loser = '.player-buttons';
             result += ' The computer picked Rock! You lose!'
             resultCounter = 'lose';
         } else if (computerChoice === 'scissors') {
-            winner = 'player';
-           loser = 'player';
+            winner = '.player-buttons';
+           loser = '.player-buttons';
             result += " The computer picked Scissors! It's a draw!"
             resultCounter = 'draw';
         } else if (computerChoice === 'paper') {
-            winner = 'player';
-           loser = 'computer';
+            winner = '.player-buttons';
+           loser = '.computer-buttons';
             result += ' The computer picked Paper! You win!'
             resultCounter = 'win';
         }
     } else if (playerChoice === 'paper') {
         result = 'You selected Paper!'
         if (computerChoice === 'rock') {
-            winner = 'player';
-            loser = 'computer';
+            winner = '.player-buttons';
+            loser = '.computer-buttons';
             result += ' The computer picked Rock! You win!'
            resultCounter = 'win'
         } else if (computerChoice === 'scissors') {
-            winner = 'computer';
-            loser = 'player';
+            winner = '.computer-buttons';
+            loser = '.player-buttons';
             result += ' The computer picked Scissors! You lose!'
             resultCounter = 'lose'
         } else if (computerChoice === 'paper') {
-            winner = 'player';
-            loser = 'player';
+            winner = '.player-buttons';
+            loser = '.player-buttons';
             result += " The computer picked Paper! It's a draw!"
             resultCounter = 'draw'
         }
     }
 
-    drawBoard(winner, loser);
+    if (winner === loser) {
+        backgroundColor(winner,'yellow');
+        backgroundColor('.computer-buttons','yellow');
+    } else {
+        backgroundColor(winner,'green');
+        backgroundColor(loser,'red');
+    }
 
     roundResult.textContent = result;
 
@@ -132,22 +152,6 @@ function clearBoard() {
     roundResult.textContent = "";
     winDisplay.textContent = "";
     return;
-}
-
-function drawBoard(green,red) {
-    let roundWinner = document.querySelector('.' + CSS.escape(green) + '-buttons');
-    let roundLoser = document.querySelector('.' + CSS.escape(red) + '-buttons');
-    roundWinner.style.background = 'green';
-    roundLoser.style.background = 'red';
-    if (green === red) {
-        roundDraw = document.querySelector('.computer-buttons')
-        roundWinner.style.background = 'yellow';
-        roundDraw.style.background = 'yellow';
-    }
-}
-
-function game() {
-    clearBoard();
 }
 
 function finalResult(wins, losses) {
