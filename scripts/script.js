@@ -142,6 +142,7 @@ function gameResult(playerChoice, computerChoice) {
 }
 
 function clearBoard() {
+    //reset everything
     removeColorButton('.button')
     removeColorButton('.button1')
     playerClear.style.background = 'none';
@@ -155,7 +156,7 @@ function clearBoard() {
 }
 
 function finalResult(wins, losses) {
-    
+    //check if either side has 5 points and change invisible div for next turn if they do
     if (wins >= 5) {
         winDisplay.textContent = "Player wins!!"
         newGame.textContent = '1';
@@ -174,12 +175,15 @@ function currentScore(divButton) {
         return;
     }
     
+    //convert text from results divs to integer
     let winsInt = parseInt(wins.textContent);
     let lossesInt = parseInt(losses.textContent);
     let drawsInt = parseInt(draws.textContent);
 
+    //run functions to get player and computer choices and the results
     result = gameResult(playerSelect(divButton),getComputerChoice());
 
+    //add a win, loss or draw to the board
     if (result === 'win') {
         console.log('win test')
         winsInt ++;
